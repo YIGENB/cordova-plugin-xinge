@@ -1,0 +1,30 @@
+def minSdkVersion = 16
+
+if(cdvMinSdkVersion == null) {
+    ext.cdvMinSdkVersion = minSdkVersion;
+} else if (cdvMinSdkVersion.toInteger() < minSdkVersion) {
+    ext.cdvMinSdkVersion = minSdkVersion;
+}
+
+dependencies {
+	api 'com.android.support:multidex:1.0.1'
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api 'com.android.support:appcompat-v7:28.0.0'
+    api 'com.android.support:design:28.0.0'
+    api 'com.android.support:support-v4:28.0.0'
+    api 'com.android.support.constraint:constraint-layout:1.1.3'
+
+    implementation 'com.android.support:multidex:1.0.1'
+    api(name:'xinge', ext:'aar')
+}
+
+android {
+    defaultConfig{
+        /*黄油刀注入添加*/
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
+
+        multiDexEnabled true
+
+        flavorDimensions "default"
+    }
+}

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-xinge" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>XinGe</name>
+    <js-module name="XinGe" src="www/XinGe.js">
+        <clobbers target="cordova.plugins.XinGe" />
+    </js-module>
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="XinGe">
+                <param name="ios-package" value="XinGe" />
+            </feature>
+        </config-file>
+        <header-file src="src/ios/XinGe.h" />
+        <source-file src="src/ios/XinGe.m" />
+        <resource-file src="src/ios/bubble.bundle" custom='true'/>
+        <resource-file src="src/ios/emotions.bundle" custom='true'/>
+        <resource-file src="src/ios/MLEmoji_Expression.bundle" custom='true'/>
+		<resource-file src="src/ios/TZImagePickerController.bundle" custom='true' />
+        <resource-file src="src/ios/WWIM.bundle" custom='true' />
+        <framework src='src/ios/LTIM.framework' custom='true'/>
+    </platform>
+	
+	
+	<platform name="android">
+    <source-file src="src/android/com/xinge/XinGe.java" target-dir="src/com/android/xinge"/>
+    <config-file target="res/xml/config.xml" parent="/*">
+		<feature name="XinGe">
+			<param name="android-package" value="com.android.xinge.XinGe" />
+		</feature>
+    </config-file>
+	
+	<source-file src="src/android/res/xml/xinge_paths.xml" target-dir="res/xml" />
+	
+    <config-file target="AndroidManifest.xml" parent="/manifest">
+      <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    </config-file>
+    <framework src="src/android/xinge.gradle" custom="true" type="gradleReference"/>
+    <resource-file src="src/android/xinge.aar" target="libs/xinge.aar"/>
+  </platform>
+</plugin>
